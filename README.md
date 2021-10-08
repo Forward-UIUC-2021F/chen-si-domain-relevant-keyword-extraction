@@ -18,7 +18,7 @@ This is a document based on the previous iteration work on this topic
 ```
 -   Get keywords from AutoPhrase library and clean-up function for eliminating keywords that have symbols
 ``` python
-    def eliminate_keywords():
+    def extract_keywords_from_library():
         return revised keyword_list
 ```
 -   Domain relevance score calculate function, using library domain-relevant-score
