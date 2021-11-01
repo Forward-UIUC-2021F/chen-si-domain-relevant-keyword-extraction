@@ -42,7 +42,7 @@ Initialization function, takes a list of keywords and writes into a file to Doma
 
 -   Join two scores from two libraries with weighting.
 ``` python
-    def join_autophrase_domain_relevace_score(autophrase_scores,     domain_relevance_scores, autophrase_ratio, domain_relevance_ratio):
+    def join_autophrase_domain_relevace_score(autophrase_scores,    domain_relevance_scores, autophrase_ratio, domain_relevance_ratio):
         ...
         return keywords_with_scores
 ```
@@ -70,3 +70,38 @@ Initialization function, takes a list of keywords and writes into a file to Doma
 - Print presicion rate
 
 ![flow chart](Domain-relevant%20keywords%20extraction.png)
+
+## Instruction
+#### Installing ArXiv dataset
+- https://www.kaggle.com/Cornell-University/arxiv
+- Move this file into the **current directory**
+
+#### Installing Library of AutoPhrase
+- https://github.com/shangjingbo1226/AutoPhrase
+- Clone this library to the **exterior folder** that contain this directory 
+- After cloning, go to *AutoPhrase/auto_phrase.sh* **line 24**, change it to the following:
+    ``` sh
+    DEFAULT_TRAIN=${DATA_DIR}/EN/arxiv_abstract.txt
+    ```
+
+#### Installing Library of Domain-Relevance
+- https://github.com/jeffhj/domain-relevance
+- Clone this library to the **exterior folder** that contain this directory 
+- After cloning, go to *domain-relevance/query.py* **line 129**, get rid of *query_terms* list and add the following code:
+    ``` python
+    f = open("input.txt", "r")
+    query_terms = f.read()
+    f.close()
+    query_terms = eval(query_terms)
+    ```
+
+#### Running Commands
+- 
+    ``` sh
+    python keyword_extraction.py
+    ```
+    or
+    ``` sh
+    python3 keyword_extraction.py
+    ```
+- To change any specific weightings please check the internal function parameters
