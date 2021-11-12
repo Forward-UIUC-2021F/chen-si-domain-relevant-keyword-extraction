@@ -96,12 +96,15 @@ Initialization function, takes a list of keywords and writes into a file to Doma
     ```
 
 #### Running Commands
-- 
+- **-c** or **--category** for pass in ArXiv dataset category for base data, could be choose from "CS", "math", "Phy", default as "math"
+- **-t** or **--threshold** for threshold for finding final combined score that is higher than the threshold, should be number in (0, 1], default as 0.88
+- **-s** or **--save-data-in-library** for whether to save data for both libraries, default as False
+- **-u** or **--use-stored-data** for whether to use stored data in libraries, default as False"
+- Example: 
     ``` sh
-    python keyword_extraction.py
+    python keyword_extraction.py -c math -t 0.9 -s true
     ```
-    or
     ``` sh
-    python3 keyword_extraction.py
+    python3 keyword_extraction.py -t 0.9 -u true -s true
     ```
-- To change any specific weightings please check the internal function parameters
+- Please see -h for any description of argument. Weighting of Autophrase and Domain-relevance score need to be manually changed in code.
