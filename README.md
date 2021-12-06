@@ -98,8 +98,9 @@ Initialization function, takes a list of keywords and writes into a file to Doma
 #### Running Commands
 - **-c** or **--category** for pass in ArXiv dataset category for base data, could be choose from "CS", "math", "Phy", default as "math"
 - **-t** or **--threshold** for threshold for finding final combined score that is higher than the threshold, should be number in (0, 1], default as 0.88
+- **-d** or **--use-prev-arxiv-data** for whether to use previous stored arxiv dataset, default as True
 - **-s** or **--save-data-in-library** for whether to save data for both libraries, default as False
-- **-u** or **--use-stored-data** for whether to use stored data in libraries, default as False"
+- **-u** or **--use-stored-data** for whether to use stored data in libraries, default as False
 - Example: 
     ``` sh
     python keyword_extraction.py -c math -t 0.9 -s true
@@ -108,3 +109,6 @@ Initialization function, takes a list of keywords and writes into a file to Doma
     python3 keyword_extraction.py -t 0.9 -u true -s true
     ```
 - Please see -h for any description of argument. Weighting of Autophrase and Domain-relevance score need to be manually changed in code.
+
+#### Some Bugs Fix
+- When using domain-relevance library, there exist a possibility that **print** statements of **epoch** might be stored in the output file that could cause error in code. The quick way to fix the bug is to delete **epoch** progress printing statements directly.
