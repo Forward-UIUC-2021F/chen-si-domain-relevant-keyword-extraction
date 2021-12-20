@@ -104,9 +104,9 @@ Initialization function, takes a list of keywords and writes into a file to Doma
     ```
 
 #### Python Library Install
-    ``` sh
-    pip install -r requirements.txt 
-    ```
+``` sh
+pip install -r requirements.txt 
+```
 
 #### Running Commands
 - **-c** or **--category** for pass in ArXiv dataset category for base data, could be choose from "CS", "math", "Phy", default as "math"
@@ -130,7 +130,9 @@ Initialization function, takes a list of keywords and writes into a file to Doma
 - About 20 mins, higher threshold in AutoPhrase reduces runtime
 
 #### Demo
-![](Library_Intro.mp4)
+<video autosize: true controls>
+  <source src="Library_Intro.mp4" type="video/mp4">
+</video>
 
 
 ## Reference
