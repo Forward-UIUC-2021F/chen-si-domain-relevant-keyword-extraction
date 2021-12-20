@@ -71,6 +71,14 @@ Initialization function, takes a list of keywords and writes into a file to Doma
 
 ![flow chart](Domain-relevant%20keywords%20extraction.png)
 
+## Project Structure
+    Domain-relevant-keyword-extraction/
+        - requirements.txt
+        - keyword_extraction.py
+        - arXiv dataset (instruction below)
+    Domain-relevance (instruction below)
+    AutoPhrase (instruction below)
+    
 ## Instruction
 #### Installing ArXiv dataset
 - https://www.kaggle.com/Cornell-University/arxiv
@@ -95,6 +103,11 @@ Initialization function, takes a list of keywords and writes into a file to Doma
     query_terms = eval(query_terms)
     ```
 
+#### Python Library Install
+    ``` sh
+    pip install -r requirements.txt 
+    ```
+
 #### Running Commands
 - **-c** or **--category** for pass in ArXiv dataset category for base data, could be choose from "CS", "math", "Phy", default as "math"
 - **-t** or **--threshold** for threshold for finding final combined score that is higher than the threshold, should be number in (0, 1], default as 0.88
@@ -112,3 +125,15 @@ Initialization function, takes a list of keywords and writes into a file to Doma
 
 #### Some Bugs Fix
 - When using domain-relevance library, there exist a possibility that **print** statements of **epoch** might be stored in the output file that could cause error in code. The quick way to fix the bug is to delete **epoch** progress printing statements directly.
+
+#### Runtime (without GPU accelerating)
+- About 20 mins, higher threshold in AutoPhrase reduces runtime
+
+#### Demo
+![](Library_Intro.mp4)
+
+
+## Reference
+- Dataset: https://www.kaggle.com/Cornell-University/arxiv
+- AutoPhrase Library: https://github.com/shangjingbo1226/AutoPhrase
+- Domain-relevance Library: https://github.com/jeffhj/domain-relevance

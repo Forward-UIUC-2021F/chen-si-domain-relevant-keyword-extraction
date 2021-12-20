@@ -2,7 +2,6 @@ import os
 import json
 import subprocess
 import pandas as pd
-from helpers import string_to_float
 import argparse
 from os.path import exists
 
@@ -114,7 +113,7 @@ def extract_keywords_from_domain_relevance():
     file = open("../domain-relevance/output.txt", "r", encoding="utf-8")
     domain_scores = file.readlines()[2:]
     keywords_with_scores = [line.split(': ') for line in domain_scores]
-    keywords_with_scores = [(pair[0], string_to_float(pair[1].split('\n')[0])) for pair in keywords_with_scores]
+    keywords_with_scores = [(pair[0], float(pair[1].split('\n')[0])) for pair in keywords_with_scores]
     print("Extracting from Domain-Relevance done")
     return keywords_with_scores
 
@@ -220,7 +219,7 @@ def main():
     if args.use_prev_arxiv_data:
         file_exists = exists("../AutoPhrase/data/EN/arxiv_abstract.txt")
         if not file_exists:
-            raise Exception("There is no previous stored arxiv abstract data in Autophrase Library.")
+            raise Exception("There is no previous stored arxiv abstract data in Autophrase Library. Please modify input with -d False")
 
     # Check whether there is previously stored Autophrase and Domain-relevance data
     if args.use_stored_data_in_library:
@@ -240,7 +239,7 @@ def main():
         apply_auto_phrase()
     # Get output from AutoPhrase library
     autophrase_scores = extract_keywords_from_AutoPhrase()
-    autophrase_scores = simplify_result_keywords(autophrase_scores, 0.85)
+    autophrase_scores = simplify_result_keywords(autophrase_scores, 0.95)
 
     # Whether to use stored data in Domain-relevance library
     if not args.use_stored_data_in_library:
@@ -253,7 +252,9 @@ def main():
     combined_scores = join_autophrase_domain_relevace_score(autophrase_scores, domain_relevance_scores, 1, 15)
 
     final_outputs = get_kewords_with_threshold(combined_scores, args.threshold)
-    print(final_outputs)
+
+    for pair in final_outputs:
+        print(f"{pair[0]}: {pair[1]}")
 
     if args.output:
         write_list_to_file(final_outputs)
@@ -261,6 +262,7 @@ def main():
 
     # Cleanup function for not storing output in corresponding libraries
     if not args.save_data_in_library:
+        print("Cleanup")
         cleanup_all()
 
 
