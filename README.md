@@ -108,6 +108,41 @@ Initialization function, takes a list of keywords and writes into a file to Doma
 pip install -r requirements.txt 
 ```
 
+#### Website to extract abstracts from:
+> SCOPUS Website to download Abstracts:
+    https://www-scopus-com.proxy2.library.illinois.edu/
+
+#### Aditional instructions on installing C++ for AutoPhrase on a VM:
+
+Steps:
+1. installing g++4.8 in ubuntu: Follow commands in:
+    https://stackoverflow.com/questions/61945439/how-to-install-compiler-g-4-8-5-in-ubuntu-20-04
+
+    mkdir educationtoday
+    cd educationtoday
+
+    - sudo dpkg --add-architecture i386
+    - sudo apt update
+    - sudo apt upgrade
+    - sudo apt-get install gcc-multilib libstdc++6:i386
+    - wget https://ftp.gnu.org/gnu/gcc/gcc-4.8.5/gcc-4.8.5.tar.bz2 --no-check-certificate
+    - tar xf gcc-4.8.5.tar.bz2
+    - cd gcc-4.8.5
+    - ./contrib/download_prerequisites
+    - cd ..
+    - sed -i -e 's/__attribute__/\/\/__attribute__/g' gcc-4.8.5/gcc/cp/cfns.h
+    sed -i 's/struct ucontext/ucontext_t/g' gcc-4.8.5/libgcc/config/i386/linux-unwind.h
+    - mkdir xgcc-4.8.5
+    - pushd xgcc-4.8.5
+    $PWD/../gcc-4.8.5/configure --enable-languages=c,c++ --prefix=/usr --enable-shared --enable-plugin --program-suffix=-4.8.5
+    - make MAKEINFO="makeinfo --force" -j
+    - sudo make install -j
+
+    REF: https://askubuntu.com/questions/583171/bin-bash-g-command-not-found-error-127
+
+2. sudo apt install gcc-4.8 g++-4.8
+3. sudo apt-get install build-essential
+
 #### Running Commands
 - **-c** or **--category** for pass in ArXiv dataset category for base data, could be choose from "CS", "math", "Phy", default as "math"
 - **-t** or **--threshold** for threshold for finding final combined score that is higher than the threshold, should be number in (0, 1], default as 0.88
