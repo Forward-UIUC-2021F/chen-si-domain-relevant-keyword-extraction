@@ -13,7 +13,8 @@ def prepare_input_for_AutoPhrase(category):
     :param category: Abstract category
     :return: void
     """
-    arxiv_json = open("arxiv-metadata-oai-snapshot.json", 'r', encoding='utf-8')
+    # Replace with following file with subject specific abstract dataset (following the same structure as arxiv metadata)
+    arxiv_json = open("arxiv-math-abstracts.json", 'r', encoding='utf-8')
     file = open("../AutoPhrase/data/EN/arxiv_abstract.txt", 'w', encoding='utf-8')
     for line in arxiv_json:
         data = json.loads(line)
@@ -93,13 +94,13 @@ def prepare_input_for_domain_relevance(keywords_with_scores):
     print("Preparation for Domain-relevance done")
 
 
-def apply_domain_relevant():
+def apply_domain_relevant(domain):
     """
     Use Domain-relevance library for generating scores
 
     :return: void
     """
-    command = "python3 query.py --domain cs --method cfl > output.txt"
+    command = f'python3 query.py --domain {domain} --method cfl > output.txt'
     process = subprocess.run(command, shell=True, cwd='../domain-relevance')
     print("Domain Relevance Score DONE")
 
@@ -130,7 +131,7 @@ def join_autophrase_domain_relevace_score(autophrase_scores, domain_relevance_sc
     :return: python list of keyphrases and combined scores based on ratio
     """
     keywords_with_scores = []
-    for i in range(len(autophrase_scores)):
+    for i in range(min(len(domain_relevance_scores), len(autophrase_scores))):
         autophrase_score = autophrase_scores[i][1]
         domain_relevance_score = domain_relevance_scores[i][1]
         keyword = autophrase_scores[i][0]
@@ -159,7 +160,7 @@ def write_list_to_file(keywords_with_scores):
     for pair in keywords_with_scores:
         keyword = pair[0]
         score = pair[1]
-        temp_str = f"{keyword}: {score}\n"
+        temp_str = f'{keyword}: {score}\n'
         file.writelines(temp_str)
     file.close()
 
@@ -239,12 +240,14 @@ def main():
         apply_auto_phrase()
     # Get output from AutoPhrase library
     autophrase_scores = extract_keywords_from_AutoPhrase()
-    autophrase_scores = simplify_result_keywords(autophrase_scores, 0.95)
+    
+    # The following threshold value can be tuned to get different number of keywords
+    autophrase_scores = simplify_result_keywords(autophrase_scores, 0.5)
 
     # Whether to use stored data in Domain-relevance library
     if not args.use_stored_data_in_library:
         prepare_input_for_domain_relevance(autophrase_scores)
-        apply_domain_relevant()
+        apply_domain_relevant(args.category)
     # Get output from Domain-relevance library
     domain_relevance_scores = extract_keywords_from_domain_relevance()
 

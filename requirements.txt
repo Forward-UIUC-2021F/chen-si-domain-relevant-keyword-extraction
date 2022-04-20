@@ -13,13 +13,13 @@ pytz==2021.3
 rdflib==6.0.2
 regex==2021.10.8
 scikit-learn==1.0
-scipy==1.7.1
+scipy
 smart-open==5.2.1
 soupsieve==2.2.1
 threadpoolctl==3.0.0
-torch==1.9.1
+torch==1.10.0
 torch-geometric==2.0.1
-torch-scatter==2.0.8
+torch-scatter==2.0.9
 torch-sparse==0.6.12
 tqdm==4.62.3
 typing-extensions==3.10.0.2
