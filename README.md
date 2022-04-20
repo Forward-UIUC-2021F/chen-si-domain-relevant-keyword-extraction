@@ -85,7 +85,7 @@ Initialization function, takes a list of keywords and writes into a file to Doma
 - Move this file into the **current directory**
 
 #### Installing Library of AutoPhrase
-- https://github.com/shangjingbo1226/AutoPhrase
+- https://github.com/abhinav-thimma/edu-today-AutoPhrase (Forked from : https://github.com/shangjingbo1226/AutoPhrase)
 - Clone this library to the **exterior folder** that contain this directory 
 - After cloning, go to *AutoPhrase/auto_phrase.sh* **line 24**, change it to the following:
     ``` sh
@@ -93,7 +93,7 @@ Initialization function, takes a list of keywords and writes into a file to Doma
     ```
 
 #### Installing Library of Domain-Relevance
-- https://github.com/jeffhj/domain-relevance
+- https://github.com/abhinav-thimma/edu-today-domain-relevance (Forked from: https://github.com/jeffhj/domain-relevance)
 - Clone this library to the **exterior folder** that contain this directory 
 - After cloning, go to *domain-relevance/query.py* **line 129**, get rid of *query_terms* list and add the following code:
     ``` python
