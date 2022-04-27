@@ -80,34 +80,30 @@ Initialization function, takes a list of keywords and writes into a file to Doma
     AutoPhrase (instruction below)
     
 ## Instruction
-#### Installing ArXiv dataset
-- https://www.kaggle.com/Cornell-University/arxiv
-- Move this file into the **current directory**
 
-#### Installing Library of AutoPhrase
-- https://github.com/abhinav-thimma/edu-today-AutoPhrase (Forked from : https://github.com/shangjingbo1226/AutoPhrase)
-- Clone this library to the **exterior folder** that contain this directory 
-- After cloning, go to *AutoPhrase/auto_phrase.sh* **line 24**, change it to the following:
-    ``` sh
-    DEFAULT_TRAIN=${DATA_DIR}/EN/arxiv_abstract.txt
-    ```
+#### Clone/ pull of this repository using:
+```
+git clone --recurse-submodules https://github.com/Forward-UIUC-2021F/chen-si-domain-relevant-keyword-extraction/
 
-#### Installing Library of Domain-Relevance
-- https://github.com/abhinav-thimma/edu-today-domain-relevance (Forked from: https://github.com/jeffhj/domain-relevance)
-- Clone this library to the **exterior folder** that contain this directory 
-- After cloning, go to *domain-relevance/query.py* **line 129**, get rid of *query_terms* list and add the following code:
-    ``` python
-    f = open("input.txt", "r")
-    query_terms = f.read()
-    f.close()
-    query_terms = eval(query_terms)
-    ```
+git pull --recurse-submodules 
+```
 
+#### Run setup.sh
+```
+sh setup.sh
+```
 #### Python Library Install
 ``` sh
 pip install -r requirements.txt 
 ```
 
+#### Setting up Autophrase:
+- Follow the instructions listed in https://github.com/Forward-UIUC-2022S/edu-today-AutoPhrase to setup AutoPhrase
+NOTE: a folder named AutoPhrase would be created in parent directory.
+
+#### Setting up Domain-relevance:
+- Follow the instructions listed in https://github.com/Forward-UIUC-2022S/edu-today-domain-relevance to setup domain-relevance
+NOTE: a folder named domain-relevance would be created in the parent directory.
 #### Website to extract abstracts from:
 > SCOPUS Website to download Abstracts:
     https://www-scopus-com.proxy2.library.illinois.edu/
