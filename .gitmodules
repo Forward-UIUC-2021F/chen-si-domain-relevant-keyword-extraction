@@ -1,0 +1,6 @@
+[submodule "submodules/domain-relevance"]
+	path = submodules/domain-relevance
+	url = https://github.com/Forward-UIUC-2022S/edu-today-domain-relevance
+[submodule "submodules/AutoPhrase"]
+	path = submodules/AutoPhrase
+	url = https://github.com/Forward-UIUC-2022S/edu-today-AutoPhrase
